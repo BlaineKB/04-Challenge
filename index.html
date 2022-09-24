@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en" class="has-background-white">
+<head> 
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <title>Coding Quiz</title>
+</head>
+
+<body class="has-background-white">
+  <nav class="box level has-background-primary">
+    <div class="title is-4 level-left">Timer: <span id="quiz-timer"></span></div>
+    <div class="title is-4 level-right">High Score: <span id="highscore-name-input"></span></div>
+  </nav>
+
+  <section id="quizBox" class="box has-background-primary">
+    <div>
+      <h2 class="title is-1">Coding Quiz</h2>
+      <button class="button is-danger is-large" id="startQuizBtn">Start!</button>
+      <p>
+        Welcome to the Coding Quiz!
+        
+        Answer all of the Javascript questions in the alloted amount of time for a chance
+        at a new High Score! If you answer the questions incorrectly, then your score and time
+        will be reduced by 10. Good Luck!
+      </p>    
+    </div>
+  </section>
+  
+  <script src="./assets/js/index.js"></script>
+</body>
+
+</html>
