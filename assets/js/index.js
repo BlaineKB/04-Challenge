@@ -1,7 +1,7 @@
 // Declare variables to grab elements by ID's and start time/score/question array at beginning
 var time = 0;
 var score = 0;
-var question = -1;
+var liveQuestion = -1;
 var startQuizBtn = document.querySelector("#startQuizBtn");
 var showHighScore = document.getElementById("highscore-name-input");
 var showQuestion = document.getElementById("quiz-box")
@@ -55,12 +55,38 @@ function startQuiz() {
       document.getElementById("quiz-timer").textContent = "0";
       endQuiz();
     }
+
   }, 1000);
 
-  console.log(timer);
+  console.log(time);
 
   startQuizBtn.remove();
   addQuestions();
 }
 
+function addQuestions() {
+  liveQuestion++;
+
+  if (liveQuestion < questionsArray.length && time > 0) {
+    showQuestion.innerHTML = questionsArray[liveQuestion].Question;
+    addChoiceBtns();
+  } else {
+    endQuiz();
+  }
+
+  console.log(liveQuestion);
+  console.log(showQuestion);
+  console.log(questionsArray[liveQuestion].Question);
+};
+
+startQuiz();
+addQuestions();
+
+// // function addChoiceBtns() {
+
+// }
+
+// function endQuiz() {
+
+// }
 
