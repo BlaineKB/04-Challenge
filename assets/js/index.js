@@ -42,3 +42,25 @@ var questionsArray = [
 ];
 
 console.log(questionsArray);
+
+// A function that starts the quiz for the user
+function startQuiz() {
+  time = 90;
+  timer = setInterval(function () {
+    document.getElementById("quiz-timer").innerHTML = time;
+    time--;
+
+    if (time <= 0) {
+      clearInterval(timer);
+      document.getElementById("quiz-timer").textContent = "0";
+      endQuiz();
+    }
+  }, 1000);
+
+  console.log(timer);
+
+  startQuizBtn.remove();
+  addQuestions();
+}
+
+
