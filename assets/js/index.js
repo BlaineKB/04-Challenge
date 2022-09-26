@@ -11,31 +11,31 @@ console.log(showQuestion);
 // Array variable that contains all the questions, possible answer choices, and lastly the answer to the question
 var questionsArray = [
   {
-    Question: "Which one of the following symbols is used to inform the computer reading and running the code where a command ends AKA the terminator?",
+    Question: "Which one of the following symbols is used to inform the computer reading and running the code where a command ends AKA the terminator? ",
     Options: ["!", "?", "$", ";"],
     Answer: ";",
   },
 
   {
-    Question: "Which of the following elements is used to incorporate JavaScript code into an HTML file?",
+    Question: "Which of the following elements is used to incorporate JavaScript code into an HTML file? ",
     Options: ["<script>", "<main>", "<div>", "<section>"],
     Answer: "<script>",
   },
 
   {
-    Question: "Also known as the building blocks of JavaScript, a '------' is a predefined action that we can call or invoke in our code",
+    Question: "Also known as the building blocks of JavaScript, a '------' is a predefined action that we can call or invoke in our code. ",
     Options: ["property", "semantic element", "function", "wireframe"],
     Answer: "function",
   },
 
   {
-    Question: "What is the name of the code in between curly braces { }?",
+    Question: "What is the name of the code in between curly braces { }? ",
     Options: ["method", "code block", "script", "expression"],
     Answer: "code block",
   },
 
   {
-    Question: "A named location for a value that gets stored in the browser's memory when a program is run is called what?",
+    Question: "A named location for a value that gets stored in the browser's memory when a program is run is called what? ",
     Options: ["operator", "localStorage", "variable", "DOM"],
     Answer: "variable",
   },
@@ -46,7 +46,7 @@ console.log(questionsArray);
 // A function that starts the quiz for the user
 function startQuiz() {
   time = 90;
-  timer = setInterval( function() {
+  timer = setInterval(function() {
     document.getElementById("quiz-timer").innerHTML = time;
     time--;
 
@@ -59,12 +59,13 @@ function startQuiz() {
   }, 1000);
 
   console.log(time);
+  console.log(timer);
 
   startQuizBtn.remove();
   addQuestions();
 }
 
-// Function that displays quiz questions to the user and iterates through the questions until the final one. After that the quiz ends
+// A function that displays quiz questions to the user and iterates through the questions until the final one. After that the quiz ends
 function addQuestions() {
   liveQuestion++;
 
@@ -75,15 +76,11 @@ function addQuestions() {
     endQuiz();
   }
 
-  console.log(liveQuestion);
-  console.log(showQuestion);
-  console.log(questionsArray[liveQuestion].Question);
 };
 
-// Function that adds answer buttons to the page for the user to select
+// A function that adds answer buttons to the page for the user to select
 function addChoiceBtns() {
   var newBtns = document.createElement("div");
-  console.log(newBtns);
 
   for (var i = 0; i < questionsArray[liveQuestion].Options.length; i++) {
     var optionsBtn = document.createElement("button");
@@ -100,7 +97,7 @@ function addChoiceBtns() {
   };
 };
 
-// Function that checks if the user-selected option is the same as the answer and increases score if correct
+// A function that checks if the user-selected option is the same as the answer and increases score if correct
 function answerVerify(answer, userSelection) {
   if (answer == userSelection) {
     score = score + 10;
@@ -112,15 +109,26 @@ function answerVerify(answer, userSelection) {
   addQuestions();
 };
 
-// Function that subtracts 10 from the time if the user-selected option is the incorrect answer
+// A function that subtracts 10 from the time if the user-selected option is the incorrect answer
 var wrongAnswer = function() {
   time -= 10;
   return;
 };
 
 
+// A function that ends the quiz for the user and displays the user's initials and score
+function endQuiz() {
+  time = 0;
 
-// function endQuiz() {
+  showQuestion.innerHTML = "<h2>You completed the quiz!</h2><p>You got a score of " + score + "/90!</p><div><input type=text id='name' placeholder='Enter Initials'><button class='button' id='finalScoreBtn' onclick='saveFinalScore()'>Save Score!</button></div>";
 
-// }
+  console.log(showQuestion);
+};
 
+// A function that takes the user's quiz score and saves it to the local storage
+function saveFinalScore() {
+  localStorage.setItem("highscore-name-input", document.getElementById("name").value + " " + score + "points!");
+  location.reload();
+};
+
+startQuizBtn.addEventListener("click", startQuiz);
