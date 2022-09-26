@@ -46,7 +46,7 @@ console.log(questionsArray);
 // A function that starts the quiz for the user
 function startQuiz() {
   time = 90;
-  timer = setInterval(function () {
+  timer = setInterval( function() {
     document.getElementById("quiz-timer").innerHTML = time;
     time--;
 
@@ -64,6 +64,7 @@ function startQuiz() {
   addQuestions();
 }
 
+// Function that displays quiz questions to the user and iterates through the questions until the final one. After that the quiz ends
 function addQuestions() {
   liveQuestion++;
 
@@ -79,9 +80,7 @@ function addQuestions() {
   console.log(questionsArray[liveQuestion].Question);
 };
 
-startQuiz();
-addQuestions();
-
+// Function that adds answer buttons to the page for the user to select
 function addChoiceBtns() {
   var newBtns = document.createElement("div");
   console.log(newBtns);
@@ -100,6 +99,26 @@ function addChoiceBtns() {
   
   };
 };
+
+// Function that checks if the user-selected option is the same as the answer and increases score if correct
+function answerVerify(answer, userSelection) {
+  if (answer == userSelection) {
+    score = score + 10;
+  } else {
+    wrongAnswer()
+  }
+
+  console.log(userSelection);
+  addQuestions();
+};
+
+// Function that subtracts 10 from the time if the user-selected option is the incorrect answer
+var wrongAnswer = function() {
+  time -= 10;
+  return;
+};
+
+
 
 // function endQuiz() {
 
