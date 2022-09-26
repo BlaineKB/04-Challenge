@@ -82,9 +82,21 @@ function addQuestions() {
 startQuiz();
 addQuestions();
 
-// // function addChoiceBtns() {
+function addChoiceBtns() {
+  var newBtns = document.createElement("div");
+  console.log(newBtns);
 
-// }
+  for (var i = 0; i < questionsArray[liveQuestion].Options.length; i++) {
+    var optionsBtn = document.createElement("button");
+    optionsBtn.className = "button";
+    optionsBtn.textContent = questionsArray[liveQuestion].Options[i];
+    optionsBtn.appendChild(newBtns);
+    console.log(newBtns);
+    
+  
+  }
+
+};
 
 // function endQuiz() {
 
