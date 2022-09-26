@@ -92,10 +92,13 @@ function addChoiceBtns() {
     optionsBtn.textContent = questionsArray[liveQuestion].Options[i];
     optionsBtn.appendChild(newBtns);
     console.log(newBtns);
-    
-  
-  }
 
+    showQuestion.appendChild(optionsBtn);
+    optionsBtn.setAttribute("onclick", "answerVerify(questionsArray[liveQuestion].answer, event.target.textContent)");
+    
+    console.log(optionsBtn);
+  
+  };
 };
 
 // function endQuiz() {
