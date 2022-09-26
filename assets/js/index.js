@@ -90,18 +90,15 @@ function addChoiceBtns() {
     console.log(newBtns);
 
     showQuestion.appendChild(optionsBtn);
-    optionsBtn.setAttribute("onclick", "answerVerify(questionsArray[liveQuestion].answer, event.target.textContent)");
-    
-    console.log(optionsBtn);
-  
+    optionsBtn.setAttribute("onclick", "checkAnswer(questionsArray[liveQuestion].Answer, event.target.textContent)");
   };
 };
 
 // A function that checks if the user-selected option is the same as the answer and increases score if correct
-function answerVerify(answer, userSelection) {
-  if (answer == userSelection) {
+function checkAnswer(Answer, userSelection) {
+  if (Answer == userSelection) {
     score = score + 10;
-  } else {
+  } else { 
     wrongAnswer()
   }
 
@@ -120,7 +117,7 @@ var wrongAnswer = function() {
 function endQuiz() {
   time = 0;
 
-  showQuestion.innerHTML = "<h2>You completed the quiz!</h2><p>You got a score of " + score + "/90!</p><div><input type=text id='name' placeholder='Enter Initials'><button class='button' id='finalScoreBtn' onclick='saveFinalScore()'>Save Score!</button></div>";
+  showQuestion.innerHTML = "<h2>You completed the quiz!</h2><p>You got a score of " + score + "/50!</p><div><input type=text id='name' placeholder='Enter Initials'><button class='button' id='finalScoreBtn' onclick='saveFinalScore()'>Save Score!</button></div>";
 
   console.log(showQuestion);
 };
