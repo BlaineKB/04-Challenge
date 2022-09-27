@@ -6,8 +6,6 @@ var startQuizBtn = document.querySelector("#startQuizBtn");
 var showHighScore = document.getElementById("highscore-name-input");
 var showQuestion = document.getElementById("quiz-box")
 
-console.log(showQuestion);
-
 // Array variable that contains all the questions, possible answer choices, and lastly the answer to the question
 var questionsArray = [
   {
@@ -40,12 +38,22 @@ var questionsArray = [
     Answer: "variable",
   },
 ];
+ 
+// A function that shows the Highscore and player initials when page loads
+window.onload = function() {
+  var highScore = localStorage.getItem("highscore-name-input");
 
-console.log(questionsArray);
+  if (!highScore) {
+    showHighScore.textContent = " ";
+  } else {
+    showHighScore.textContent = " " + highScore;
+  }
+};
 
 // A function that starts the quiz for the user
 function startQuiz() {
   time = 90;
+
   timer = setInterval(function() {
     document.getElementById("quiz-timer").innerHTML = time;
     time--;
@@ -55,11 +63,7 @@ function startQuiz() {
       document.getElementById("quiz-timer").textContent = "0";
       endQuiz();
     }
-
   }, 1000);
-
-  console.log(time);
-  console.log(timer);
 
   startQuizBtn.remove();
   addQuestions();
@@ -71,11 +75,11 @@ function addQuestions() {
 
   if (liveQuestion < questionsArray.length && time > 0) {
     showQuestion.innerHTML = questionsArray[liveQuestion].Question;
+
     addChoiceBtns();
   } else {
     endQuiz();
   }
-
 };
 
 // A function that adds answer buttons to the page for the user to select
@@ -87,8 +91,6 @@ function addChoiceBtns() {
     optionsBtn.className = "button";
     optionsBtn.textContent = questionsArray[liveQuestion].Options[i];
     optionsBtn.appendChild(newBtns);
-    console.log(newBtns);
-
     showQuestion.appendChild(optionsBtn);
     optionsBtn.setAttribute("onclick", "checkAnswer(questionsArray[liveQuestion].Answer, event.target.textContent)");
   };
@@ -117,14 +119,12 @@ var wrongAnswer = function() {
 function endQuiz() {
   time = 0;
 
-  showQuestion.innerHTML = "<h2>You completed the quiz!</h2><p>You got a score of " + score + "/50!</p><div><input type=text id='name' placeholder='Enter Initials'><button class='button' id='finalScoreBtn' onclick='saveFinalScore()'>Save Score!</button></div>";
-
-  console.log(showQuestion);
+  showQuestion.innerHTML = "<strong>You completed the quiz!</strong><p>You got a score of " + score + "/50!</p><div><input type=text id='name' placeholder='Enter Initials'><button class='button' id='finalScoreBtn' onclick='saveFinalScore()'>Save Score!</button></div>";
 };
 
 // A function that takes the user's quiz score and saves it to the local storage
 function saveFinalScore() {
-  localStorage.setItem("highscore-name-input", document.getElementById("name").value + " " + score + "points!");
+  localStorage.setItem("highscore-name-input", document.getElementById("name").value + " " + score + " points!");
   location.reload();
 };
 
